@@ -1,0 +1,51 @@
+<div class="table-container mat-elevation-z8">
+  <div class="loading-shade" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="error-container" *ngIf="error">
+    <h3>{{ error }}</h3>
+  </div>
+
+  <mat-form-field appearance="standard" class="filter-field">
+    <mat-label>Filtrar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Zagueiro" #input>
+  </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.nome}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="posicao">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Posição </mat-header-cell>
+      <mat-cell *matCellDef="let player">
+        <span class="position-chip" [style.background-color]="getPositionColor(player.posicao)">
+          {{player.posicao}}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gols">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Gols </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.gols}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="capas">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Capas </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.capas}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        Nenhum resultado encontrado para "{{input.value}}"
+      </td>
+    </tr>
+  </mat-table>
+
+  <!-- <mat-paginator [pageSizeOptions]="[100]" aria-label="Selecione a página"></mat-paginator> -->
+</div>

@@ -1,0 +1,65 @@
+.table-container {
+  position: relative;
+  min-height: 400px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-container {
+  padding: 20px;
+  text-align: center;
+  color: #f44336;
+}
+
+.filter-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mat-cell {
+  font-size: 14px;
+}
+
+.position-chip {
+  padding: 4px 8px;
+  border-radius: 16px;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  min-width: 60px;
+  text-align: center;
+  display: inline-block;
+}
+
+.mat-row:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.mat-column-gols,
+.mat-column-capas {
+  text-align: center;
+}
