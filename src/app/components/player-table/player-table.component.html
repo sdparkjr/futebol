@@ -1,4 +1,4 @@
-<div class="table-container mat-elevation-z8">
+<div class="cartola-container">
   <div class="loading-shade" *ngIf="isLoading">
     <mat-spinner></mat-spinner>
   </div>
@@ -7,45 +7,66 @@
     <h3>{{ error }}</h3>
   </div>
 
-  <mat-form-field appearance="standard" class="filter-field">
-    <mat-label>Filtrar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Zagueiro" #input>
-  </mat-form-field>
+  <div class="filters-container">
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Buscar jogador</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Digite o nome do jogador" #input>
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
 
-  <mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="nome">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.nome}} </mat-cell>
-    </ng-container>
+    <div class="filters-section">
+      <div class="">
+        <mat-chip-list>
+          <mat-chip *ngFor="let pos of positions" (click)="filterByPosition(pos)"
+            [class.active]="selectedPosition === pos" selectable="true" class="filter-chip">
+            {{pos}}
+          </mat-chip>
+          <mat-chip (click)="filterByPosition('')" [class.active]="!selectedPosition" color="primary" selectable="true"
+            class="filter-chip">
+            TODOS
+          </mat-chip>
+        </mat-chip-list>
+      </div>
 
-    <ng-container matColumnDef="posicao">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Posição </mat-header-cell>
-      <mat-cell *matCellDef="let player">
-        <span class="position-chip" [style.background-color]="getPositionColor(player.posicao)">
-          {{player.posicao}}
-        </span>
-      </mat-cell>
-    </ng-container>
+      <div class="" style="padding-top: 15px;">
+        <button mat-button (click)="sortBy('gols')" class="sort-button">
+          Gols
+          <mat-icon *ngIf="sortField === 'gols'">
+            {{sortDirection === 'asc' ? 'arrow_upward' : 'arrow_downward'}}
+          </mat-icon>
+        </button>
+        <button mat-button (click)="sortBy('capas')" class="sort-button">
+          Capas
+          <mat-icon *ngIf="sortField === 'capas'">
+            {{sortDirection === 'asc' ? 'arrow_upward' : 'arrow_downward'}}
+          </mat-icon>
+        </button>
+      </div>
+    </div>
 
-    <ng-container matColumnDef="gols">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Gols </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.gols}} </mat-cell>
-    </ng-container>
+    <div class="players-grid">
+      <div class="player-card mat-elevation-z2" *ngFor="let player of dataSource.filteredData">
+        <div class="player-card-header">
+          <span class="position-chip" [style.background-color]="getPositionColor(player.posicao)">
+            {{player.posicao}}
+          </span>
+          <span class="player-name">{{player.nome}}</span>
+        </div>
 
-    <ng-container matColumnDef="capas">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Capas </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{player.capas}} </mat-cell>
-    </ng-container>
+        <div class="player-stats">
+          <div class="stat-item">
+            <span class="stat-label">Gols</span>
+            <span class="stat-value">{{player.gols}}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Capas</span>
+            <span class="stat-value">{{player.capas}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">
-        Nenhum resultado encontrado para "{{input.value}}"
-      </td>
-    </tr>
-  </mat-table>
-
-  <!-- <mat-paginator [pageSizeOptions]="[100]" aria-label="Selecione a página"></mat-paginator> -->
-</div>
+    <div class="no-data" *ngIf="dataSource.filteredData.length === 0">
+      <p>Nenhum resultado encontrado para "{{input.value}}"</p>
+    </div>
+  </div>

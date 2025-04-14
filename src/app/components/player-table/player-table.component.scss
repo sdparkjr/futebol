@@ -1,9 +1,8 @@
-.table-container {
+.cartola-container {
   position: relative;
-  min-height: 400px;
   max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
+  margin: 10px auto;
+  padding: 10px;
 }
 
 .loading-shade {
@@ -25,23 +24,129 @@
   color: #f44336;
 }
 
+.filters-container {
+  margin-bottom: 24px;
+}
+
 .filter-field {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
-.mat-table {
-  width: 100%;
+.position-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0 24px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  justify-content: center;
+
+  .mat-mdc-chip {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 36px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 16px;
+    border: 1px solid #e0e0e0;
+
+    &.active {
+      background-color: #00bfa5;
+      color: white;
+      border: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    &:last-child {
+      background-color: #f5f5f5;
+
+      &.active {
+        background-color: #1976d2;
+        color: white;
+      }
+    }
+
+    &:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+  }
 }
 
-.mat-header-cell {
-  font-weight: bold;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.87);
+.sort-controls {
+  display: flex;
+  gap: 24px;
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  justify-content: center;
+
+  .sort-button {
+    min-width: 100px;
+    font-weight: 500;
+    color: #424242;
+    padding: 4px 16px;
+    border-radius: 20px;
+
+    &:hover {
+      background: rgba(0, 191, 165, 0.08);
+      color: #00bfa5;
+    }
+
+    mat-icon {
+      margin-left: 4px;
+      color: #00bfa5;
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+  border-bottom: 1px solid #e0e0e0;
+
+  .sort-button {
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 500;
+
+    mat-icon {
+      margin-left: 4px;
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover {
+      color: #2196f3;
+    }
+  }
 }
 
-.mat-cell {
-  font-size: 14px;
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 8px;
+}
+
+.player-card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.player-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .position-chip {
@@ -52,14 +157,80 @@
   font-weight: 500;
   min-width: 60px;
   text-align: center;
-  display: inline-block;
+  margin-right: 12px;
 }
 
-.mat-row:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+.player-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
 }
 
-.mat-column-gols,
-.mat-column-capas {
+.player-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.stat-item {
   text-align: center;
+  flex: 1;
+
+  &:not(:last-child) {
+    border-right: 1px solid #e0e0e0;
+  }
 }
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.54);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+@media screen and (max-width: 600px) {
+  .cartola-container {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .players-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 4px;
+  }
+
+  .player-card {
+    padding: 12px;
+  }
+
+  .position-chip {
+    padding: 2px 6px;
+    font-size: 11px;
+    min-width: 50px;
+  }
+
+  .player-name {
+    font-size: 14px;
+  }
+
+  .stat-value {
+    font-size: 16px;
+  }
+}
+
