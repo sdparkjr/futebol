@@ -58,7 +58,7 @@ export class GoogleSheetsService {
 
       const response = await gapi.client.sheets.spreadsheets.values.get({
         spreadsheetId: this.SPREADSHEET_ID,
-        range: 'A4:D'
+        range: 'A4:E'
       });
 
       const rows = response.result.values;
@@ -73,7 +73,8 @@ export class GoogleSheetsService {
         nome: row[0],
         gols: parseInt(row[1]) || 0,
         capas: parseInt(row[2]) || 0,
-        posicao: row[3] as 'ATA' | 'MEI' | 'ZAG' | 'GOL'
+        posicao: row[3] as 'ATA' | 'MEI' | 'ZAG' | 'GOL',
+        foto: row[4] || '' // Assuming the photo filename is in the 5th column (index 4)
       }
       ));
     } catch (error) {

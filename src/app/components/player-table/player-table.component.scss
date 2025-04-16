@@ -143,10 +143,55 @@
   }
 }
 
+.card-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-info {
+  flex: 1;
+}
+
+.player-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #e0e0e0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
 .player-card-header {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
+}
+
+.position-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rank-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  background-color: #424242;
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .position-chip {
@@ -168,10 +213,9 @@
 
 .player-stats {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  gap: 24px;
   padding: 8px 0;
-  background: #f5f5f5;
-  border-radius: 4px;
 }
 
 .stat-item {
@@ -213,6 +257,15 @@
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 4px;
+  }
+
+  .player-photo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .card-content {
+    gap: 12px;
   }
 
   .player-card {

@@ -110,9 +110,9 @@ export class PlayerTableComponent implements OnInit {
 
   getPositionColor(posicao: string): string {
     const colors = {
-      'ATA': '#ff4444',
-      'MEI': '#33b5e5',
-      'ZAG': '#00C851',
+      'ATA': '#34943c',
+      'MEI': '#dea712',
+      'ZAG': '#213ddb',
       'GOL': '#FF8800'
     };
     return colors[posicao] || '#757575';

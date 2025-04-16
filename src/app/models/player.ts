@@ -3,4 +3,5 @@ export interface Player {
     gols: number;
     capas: number;
     posicao: 'ATA' | 'MEI' | 'ZAG' | 'GOL';
+    foto: string;
 }

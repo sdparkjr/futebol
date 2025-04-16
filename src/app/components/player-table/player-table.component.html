@@ -45,22 +45,34 @@
     </div>
 
     <div class="players-grid">
-      <div class="player-card mat-elevation-z2" *ngFor="let player of dataSource.filteredData">
-        <div class="player-card-header">
-          <span class="position-chip" [style.background-color]="getPositionColor(player.posicao)">
-            {{player.posicao}}
-          </span>
-          <span class="player-name">{{player.nome}}</span>
-        </div>
-
-        <div class="player-stats">
-          <div class="stat-item">
-            <span class="stat-label">Gols</span>
-            <span class="stat-value">{{player.gols}}</span>
+      <div class="player-card mat-elevation-z2" *ngFor="let player of dataSource.filteredData; let i = index">
+        <div class="card-content">
+          <div class="player-photo">
+            <img [src]="player.foto ? 'assets/player-images/' + player.foto : 'assets/default-avatar.png'"
+                 [alt]="player.nome"
+                 onerror="this.onerror=null; this.src='assets/player-images/default-avatar.png'">
           </div>
-          <div class="stat-item">
-            <span class="stat-label">Capas</span>
-            <span class="stat-value">{{player.capas}}</span>
+          <div class="player-info">
+            <div class="player-card-header">
+              <div class="position-container">
+                <span class="rank-number">{{i + 1}}</span>
+                <span class="position-chip" [style.background-color]="getPositionColor(player.posicao)">
+                  {{player.posicao}}
+                </span>
+              </div>
+              <span class="player-name">{{player.nome}}</span>
+            </div>
+
+            <div class="player-stats">
+              <div class="stat-item">
+                <span class="stat-label">Gols</span>
+                <span class="stat-value">{{player.gols}}</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Capas</span>
+                <span class="stat-value">{{player.capas}}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
