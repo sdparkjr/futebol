@@ -16,6 +16,17 @@ export class PlayerTableComponent implements OnInit {
   isLoading = true;
   error: string | null = null;
   positions: string[] = ['ATA', 'MEI', 'ZAG', 'GOL'];
+  highlightedPlayers: {
+    goleiro: Player | null;
+    zagueiros: Player[];
+    meias: Player[];
+    atacantes: Player[];
+  } = {
+    goleiro: null,
+    zagueiros: [],
+    meias: [],
+    atacantes: []
+  };
   selectedPosition: string = '';
   sortField: string = '';
   sortDirection: 'asc' | 'desc' = 'desc';
@@ -42,6 +53,7 @@ export class PlayerTableComponent implements OnInit {
         this.dataSource.data = players;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.updateHighlightedPlayers();
         this.isLoading = false;
       },
       (error) => {
@@ -116,5 +128,32 @@ export class PlayerTableComponent implements OnInit {
       'GOL': '#FF8800'
     };
     return colors[posicao] || '#757575';
+  }
+
+  private updateHighlightedPlayers(): void {
+    const playersByPosition = {
+      GOL: [] as Player[],
+      ZAG: [] as Player[],
+      MEI: [] as Player[],
+      ATA: [] as Player[]
+    };
+
+    this.originalData.forEach(player => {
+      playersByPosition[player.posicao].push(player);
+    });
+
+    const sortPlayers = (a: Player, b: Player) => {
+      if (a.capas !== b.capas) {
+        return b.capas - a.capas;
+      }
+      return b.gols - a.gols;
+    };
+
+    this.highlightedPlayers = {
+      goleiro: playersByPosition.GOL.sort(sortPlayers)[0] || null,
+      zagueiros: playersByPosition.ZAG.sort(sortPlayers).slice(0, 2),
+      meias: playersByPosition.MEI.sort(sortPlayers).slice(0, 2),
+      atacantes: playersByPosition.ATA.sort(sortPlayers).slice(0, 2)
+    };
   }
 }

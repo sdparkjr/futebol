@@ -1,4 +1,150 @@
 .cartola-container {
+
+  // Highlights Section Styles
+  .highlights-section {
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: #fff;
+
+    .highlights-title {
+      text-align: center;
+      color: #333;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .team-formation {
+      background: linear-gradient(to bottom, #3ca03c, #2d8d2d);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      min-height: 600px;
+      position: relative;
+      border: 4px solid #fff;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+
+      // Campo de futebol
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+          // Linha central
+          linear-gradient(90deg, transparent 49%, #fff 49%, #fff 51%, transparent 51%),
+          // Linhas laterais
+          linear-gradient(0deg, transparent 2%, #fff 2%, #fff 98%, transparent 98%),
+          // Círculo central
+          radial-gradient(circle 80px at center, #fff 20%, transparent 21%),
+          radial-gradient(circle 20px at center, #2d8d2d 49%, #fff 49%, #fff 51%, transparent 51%),
+          // Área grande (topo)
+          linear-gradient(90deg, transparent 20%, #fff 20%, #fff 80%, transparent 80%) 0 20%,
+          // Área grande (base)
+          linear-gradient(90deg, transparent 20%, #fff 20%, #fff 80%, transparent 80%) 0 80%,
+          // Pequena área (topo)
+          linear-gradient(90deg, transparent 35%, #fff 35%, #fff 65%, transparent 65%) 0 10%,
+          // Pequena área (base)
+          linear-gradient(90deg, transparent 35%, #fff 35%, #fff 65%, transparent 65%) 0 90%;
+        background-size:
+          100% 2px,  // Linha do meio campo
+          100% 2px,  // Linha da área
+          120px 120px,  // Círculo central
+          150px 2px,  // Área do gol (topo)
+          150px 2px;  // Área do gol (base)
+        background-position:
+          center center,  // Linha do meio campo
+          center 150px,   // Linha da área (topo)
+          center center,  // Círculo central
+          center 50px,    // Área do gol (topo)
+          center calc(100% - 50px);  // Área do gol (base)
+        background-repeat: no-repeat;
+        opacity: 0.3;
+        border-radius: 16px;
+      }
+
+      .formation-row {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        position: relative;
+        z-index: 1;
+
+        &.attackers {
+          padding-top: 40px;
+        }
+
+        &.midfielders {
+          padding-top: 100px;
+        }
+
+        &.defenders {
+          padding-top: 100px;
+        }
+
+        &.goalkeeper {
+          padding-top: 80px;
+          justify-content: center;
+        }
+      }
+
+      .player-highlight-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(5px);
+        border-radius: 12px;
+        padding: 0.5rem;
+        width: 120px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+
+        .player-photo {
+          width: 80px;
+          height: 80px;
+          overflow: hidden;
+          border-radius: 50%;
+          margin: 0 auto 0.5rem;
+          border: 2px solid #fff;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .player-info {
+          text-align: center;
+
+          .position-chip {
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: white;
+            font-size: 0.7rem;
+            margin-bottom: 0.2rem;
+            display: inline-block;
+          }
+
+          .player-name {
+            display: block;
+            font-weight: bold;
+            margin: 0.2rem 0;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+
   position: relative;
   max-width: 1200px;
   margin: 10px auto;

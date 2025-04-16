@@ -78,6 +78,72 @@
       </div>
     </div>
 
+    <!-- Destaques da Rodada Section -->
+    <div class="highlights-section mat-elevation-z2">
+      <h2 class="highlights-title">Destaques da Rodada</h2>
+      <div class="team-formation">
+        <!-- Atacantes -->
+        <div class="formation-row attackers">
+          <div class="player-highlight-card" *ngFor="let player of highlightedPlayers.atacantes">
+            <div class="player-photo">
+              <img [src]="player.foto ? 'assets/player-images/' + player.foto : 'assets/player-images/default-avatar.png'"
+                   [alt]="player.nome"
+                   onerror="this.onerror=null; this.src='assets/player-images/default-avatar.png'">
+            </div>
+            <div class="player-info">
+              <span class="position-chip" [style.background-color]="getPositionColor(player.posicao)">{{player.posicao}}</span>
+              <span class="player-name">{{player.nome}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meias -->
+        <div class="formation-row midfielders">
+          <div class="player-highlight-card" *ngFor="let player of highlightedPlayers.meias">
+            <div class="player-photo">
+              <img [src]="player.foto ? 'assets/player-images/' + player.foto : 'assets/player-images/default-avatar.png'"
+                   [alt]="player.nome"
+                   onerror="this.onerror=null; this.src='assets/player-images/default-avatar.png'">
+            </div>
+            <div class="player-info">
+              <span class="position-chip" [style.background-color]="getPositionColor(player.posicao)">{{player.posicao}}</span>
+              <span class="player-name">{{player.nome}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zagueiros -->
+        <div class="formation-row defenders">
+          <div class="player-highlight-card" *ngFor="let player of highlightedPlayers.zagueiros">
+            <div class="player-photo">
+              <img [src]="player.foto ? 'assets/player-images/' + player.foto : 'assets/player-images/default-avatar.png'"
+                   [alt]="player.nome"
+                   onerror="this.onerror=null; this.src='assets/player-images/default-avatar.png'">
+            </div>
+            <div class="player-info">
+              <span class="position-chip" [style.background-color]="getPositionColor(player.posicao)">{{player.posicao}}</span>
+              <span class="player-name">{{player.nome}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Goleiro -->
+        <div class="formation-row goalkeeper" *ngIf="highlightedPlayers.goleiro">
+          <div class="player-highlight-card">
+            <div class="player-photo">
+              <img [src]="highlightedPlayers.goleiro.foto ? 'assets/player-images/' + highlightedPlayers.goleiro.foto : 'assets/player-images/default-avatar.png'"
+                   [alt]="highlightedPlayers.goleiro.nome"
+                   onerror="this.onerror=null; this.src='assets/player-images/default-avatar.png'">
+            </div>
+            <div class="player-info">
+              <span class="position-chip" [style.background-color]="getPositionColor(highlightedPlayers.goleiro.posicao)">{{highlightedPlayers.goleiro.posicao}}</span>
+              <span class="player-name">{{highlightedPlayers.goleiro.nome}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="no-data" *ngIf="dataSource.filteredData.length === 0">
       <p>Nenhum resultado encontrado para "{{input.value}}"</p>
     </div>
