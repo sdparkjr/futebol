@@ -1,54 +1,20 @@
-.spacer {
-  flex: 1 1 auto;
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
 }
 
-.content {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+.team-logo {
+  height: 40px;
+  width: auto;
+  border-radius: 50%;
+  background: white;
+  padding: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-mat-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  margin-bottom: 20px;
-}
-
-mat-card {
-  margin-bottom: 20px;
-}
-
-mat-card-header {
-  margin-bottom: 20px;
-}
-
-mat-card-title {
-  font-size: 24px;
-  font-weight: 500;
-}
-
-mat-card-subtitle {
-  font-size: 16px;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-button {
-  mat-icon {
-    margin-right: 8px;
-  }
-}
-
-@media (max-width: 600px) {
-  .content {
-    padding: 10px;
-  }
-
-  mat-card-title {
-    font-size: 20px;
-  }
-
-  mat-card-subtitle {
-    font-size: 14px;
-  }
+.mat-toolbar {
+  justify-content: center;
 }

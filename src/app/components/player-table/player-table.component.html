@@ -48,7 +48,7 @@
       <div class="player-card mat-elevation-z2" *ngFor="let player of dataSource.filteredData; let i = index">
         <div class="card-content">
           <div class="player-photo">
-            <img [src]="player.foto ? 'assets/player-images/' + player.foto : 'assets/default-avatar.png'"
+            <img [src]="player.foto ? 'assets/player-images/' + player.foto : 'assets/player-images/default-avatar.png'"
                  [alt]="player.nome"
                  onerror="this.onerror=null; this.src='assets/player-images/default-avatar.png'">
           </div>
@@ -80,7 +80,7 @@
 
     <!-- Destaques da Rodada Section -->
     <div class="highlights-section mat-elevation-z2">
-      <h2 class="highlights-title">Destaques da Rodada</h2>
+      <h2 class="highlights-title">#Raking</h2>
       <div class="team-formation">
         <!-- Atacantes -->
         <div class="formation-row attackers">

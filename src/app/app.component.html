@@ -1,16 +1,21 @@
 <mat-toolbar color="primary">
-  <span>{{title}}</span>
+  <div class="toolbar-content">
+    <img src="assets/team-logo.jpg" alt="Racha Logo" class="team-logo">
+    <span>{{title}}</span>
+  </div>
 </mat-toolbar>
 
 <div class="content">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>
-        Estatísticas dos Jogadores
-      </mat-card-title>
-      <mat-card-subtitle>
-        Dados atualizados em tempo real da planilha do Google Sheets
-      </mat-card-subtitle>
+      <div class="container">
+        <mat-card-title>
+          Estatísticas dos Jogadores
+        </mat-card-title>
+        <mat-card-subtitle>
+          Dados atualizados em tempo real da planilha do Google Sheets
+        </mat-card-subtitle>
+      </div>
     </mat-card-header>
     <mat-card-content>
       <app-player-table></app-player-table>

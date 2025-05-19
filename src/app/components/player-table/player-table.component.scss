@@ -273,7 +273,7 @@
 
 .players-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   padding: 8px;
 }
@@ -355,6 +355,9 @@
   font-size: 16px;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.87);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .player-stats {
@@ -391,6 +394,12 @@
   text-align: center;
   padding: 20px;
   color: rgba(0, 0, 0, 0.54);
+}
+
+@media screen and (max-width: 1024px) {
+  .players-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media screen and (max-width: 600px) {
